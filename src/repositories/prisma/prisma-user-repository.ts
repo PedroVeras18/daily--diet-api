@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client'
 import { UsersRepository } from '../users-repository'
 
 export class PrismaUsersRepository implements UsersRepository {
-  async getAll() {
+  async getAll(page: number) {
     const users = await prisma.user.findMany({
       select: {
         id: true,
@@ -11,6 +11,8 @@ export class PrismaUsersRepository implements UsersRepository {
         email: true,
         created_at: true,
       },
+      take: 20,
+      skip: (page - 1) * 20,
     })
 
     return users

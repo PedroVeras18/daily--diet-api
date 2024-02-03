@@ -1,6 +1,10 @@
 import { IUser } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
 
+interface FetchAllUsersUseCaseRequest {
+  page: number
+}
+
 interface FetchAllUsersUseCaseResponse {
   users: IUser[]
 }
@@ -8,8 +12,10 @@ interface FetchAllUsersUseCaseResponse {
 export class FetchAllUsersUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute(): Promise<FetchAllUsersUseCaseResponse> {
-    const users = await this.usersRepository.getAll()
+  async execute({
+    page,
+  }: FetchAllUsersUseCaseRequest): Promise<FetchAllUsersUseCaseResponse> {
+    const users = await this.usersRepository.getAll(page)
 
     return { users }
   }
