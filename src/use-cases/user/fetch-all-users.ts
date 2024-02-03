@@ -1,8 +1,8 @@
+import { IUser } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
-import { User } from '@prisma/client'
 
 interface FetchAllUsersUseCaseResponse {
-  users: User[]
+  users: IUser[]
 }
 
 export class FetchAllUsersUseCase {
