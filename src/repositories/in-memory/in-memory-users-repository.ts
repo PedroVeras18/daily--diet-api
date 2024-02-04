@@ -9,6 +9,16 @@ export class InMemoryUsersRepository implements UsersRepository {
     return this.items.slice((page - 1) * 20, page * 20)
   }
 
+  async findById(userId: string) {
+    const user = this.items.find((item) => item.id === userId)
+
+    if (!user) {
+      return null
+    }
+
+    return user
+  }
+
   async findByEmail(email: string) {
     const user = this.items.find((item) => item.email === email)
 
