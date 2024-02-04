@@ -1,7 +1,6 @@
 import { makeFetchAllUsersUseCase } from '@/use-cases/factories/make-fetch-all-users-use-case'
 import { getAllUsersQuerySchema } from '@/validations/get-all-users-schema'
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { z } from 'zod'
 
 export async function fetchAllUsers(
   request: FastifyRequest,
