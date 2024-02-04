@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { deleteUserParamsSchema } from '@/validations/delete-user-schema'
-import { makeDeleteUserUseCase } from '@/use-cases/factories/make-delete-user-use-case'
+import { makeDeleteUserUseCase } from '@/use-cases/factories/factory-user-use-case'
 import { UserNotFoundError } from '@/use-cases/errors/user-not-found-error'
 
 export async function deleteUser(request: FastifyRequest, reply: FastifyReply) {
