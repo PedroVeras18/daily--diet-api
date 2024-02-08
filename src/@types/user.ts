@@ -4,3 +4,10 @@ export interface IUser {
   email: string
   created_at: Date
 }
+
+export interface IEditUser {
+  id?: string
+  name?: string
+  email?: string
+  password?: string
+}
