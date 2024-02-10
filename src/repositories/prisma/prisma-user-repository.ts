@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
 import { UsersRepository } from '../users-repository'
+import { IEditUser } from '@/@types/user'
 
 export class PrismaUsersRepository implements UsersRepository {
   async getAll(page: number) {
@@ -44,6 +45,15 @@ export class PrismaUsersRepository implements UsersRepository {
     })
 
     return user
+  }
+
+  async save(anInput: IEditUser) {
+    await prisma.user.update({
+      where: {
+        id: anInput.id,
+      },
+      data: anInput,
+    })
   }
 
   async delete(userId: string) {
