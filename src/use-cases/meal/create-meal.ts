@@ -39,8 +39,6 @@ export class CreateMealUseCase {
       userId,
     })
 
-    console.log('meal', meal)
-
     return {
       meal,
     }
