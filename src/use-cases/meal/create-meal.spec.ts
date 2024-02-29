@@ -3,6 +3,8 @@ import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-user
 import { CreateMealUseCase } from './create-meal'
 import { InMemoryMealsRepository } from '@/repositories/in-memory/in-memory-meals-repository'
 import { UserNotFoundError } from '../errors/user-not-found-error'
+import { makeUser } from '../factories/make-user-factory'
+import { faker } from '@faker-js/faker'
 
 describe('Create Meal Use Case', () => {
   let usersRepository: InMemoryUsersRepository
@@ -16,19 +18,15 @@ describe('Create Meal Use Case', () => {
   })
 
   it('should to create a meal', async () => {
-    const user = await usersRepository.create({
-      id: `id-01`,
-      name: `user-01`,
-      email: `user01@example.com`,
-      password: `password-user-01`,
-    })
+    const userFactory = makeUser()
+    const user = await usersRepository.create(userFactory)
 
     expect(user.id).toEqual(expect.any(String))
 
     const { meal } = await sut.execute({
-      name: 'meal-01',
-      description: 'description-01',
-      isAtDiet: false,
+      name: 'Rodízio de comida japonesa',
+      description: faker.lorem.words({ min: 3, max: 5 }),
+      isAtDiet: faker.datatype.boolean(),
       userId: user.id,
     })
 
@@ -38,9 +36,9 @@ describe('Create Meal Use Case', () => {
   it('should not be able to create a meal when the user does not exist', async () => {
     expect(() =>
       sut.execute({
-        name: 'user-01',
-        description: 'description-01',
-        isAtDiet: false,
+        name: 'Rodízio de comida japonesa',
+        description: faker.lorem.words({ min: 3, max: 5 }),
+        isAtDiet: faker.datatype.boolean(),
         userId: 'user-01',
       }),
     ).rejects.toBeInstanceOf(UserNotFoundError)
