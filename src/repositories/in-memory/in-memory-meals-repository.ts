@@ -6,7 +6,6 @@ export class InMemoryMealsRepository implements MealsRepository {
   public items: Meal[] = []
 
   async create(data: Meal): Promise<Meal> {
-    console.log(data)
     const meal: Meal = {
       id: data.id ?? randomUUID(),
       name: data.name,
@@ -16,10 +15,14 @@ export class InMemoryMealsRepository implements MealsRepository {
       userId: data.userId,
     }
 
-    console.log(meal)
-
     this.items.push(meal)
 
     return meal
+  }
+
+  async getAllByUser(userId: string, page: number) {
+    return this.items
+      .filter((item) => item.userId === userId)
+      .slice((page - 1) * 20, page * 20)
   }
 }
