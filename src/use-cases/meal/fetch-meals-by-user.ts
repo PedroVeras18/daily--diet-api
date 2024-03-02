@@ -3,16 +3,16 @@ import { MealsRepository } from '@/repositories/meals-repository'
 import { UsersRepository } from '@/repositories/users-repository'
 import { UserNotFoundError } from '../errors/user-not-found-error'
 
-interface FetchAllMealsByUserUseCaseRequest {
+interface FetchMealsByUserUseCaseRequest {
   page: number
   userId: string
 }
 
-interface FetchAllMealsByUserUseCaseResponse {
+interface FetchMealsByUserUseCaseResponse {
   meals: Meal[]
 }
 
-export class FetchAllMealsByUserUseCase {
+export class FetchMealsByUserUseCase {
   constructor(
     private usersRepository: UsersRepository,
     private mealsRepository: MealsRepository,
@@ -21,7 +21,7 @@ export class FetchAllMealsByUserUseCase {
   async execute({
     page,
     userId,
-  }: FetchAllMealsByUserUseCaseRequest): Promise<FetchAllMealsByUserUseCaseResponse> {
+  }: FetchMealsByUserUseCaseRequest): Promise<FetchMealsByUserUseCaseResponse> {
     const user = await this.usersRepository.findById(userId)
 
     if (!user) {

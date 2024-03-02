@@ -10,4 +10,16 @@ export class PrismaMealsRepository implements MealsRepository {
 
     return meal
   }
+
+  async fetchByUser(userId: string, page: number) {
+    const meals = await prisma.meal.findMany({
+      where: {
+        userId,
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return meals
+  }
 }

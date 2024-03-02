@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { makeUser } from '../factories/make-user-factory'
-import { FetchAllMealsByUserUseCase } from './fetch-meals-by-user'
+import { FetchMealsByUserUseCase } from './fetch-meals-by-user'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { InMemoryMealsRepository } from '@/repositories/in-memory/in-memory-meals-repository'
 import { UserNotFoundError } from '../errors/user-not-found-error'
@@ -8,12 +8,12 @@ import { UserNotFoundError } from '../errors/user-not-found-error'
 describe('Fetch meals by user Use Case', () => {
   let usersRepository: InMemoryUsersRepository
   let mealsRepository: InMemoryMealsRepository
-  let sut: FetchAllMealsByUserUseCase
+  let sut: FetchMealsByUserUseCase
 
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
     mealsRepository = new InMemoryMealsRepository()
-    sut = new FetchAllMealsByUserUseCase(usersRepository, mealsRepository)
+    sut = new FetchMealsByUserUseCase(usersRepository, mealsRepository)
   })
 
   it('should to fetch meals by user', async () => {
