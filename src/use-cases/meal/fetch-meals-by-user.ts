@@ -28,7 +28,7 @@ export class FetchAllMealsByUserUseCase {
       throw new UserNotFoundError()
     }
 
-    const meals = await this.mealsRepository.getAllByUser(userId, page)
+    const meals = await this.mealsRepository.fetchByUser(userId, page)
 
     return { meals }
   }

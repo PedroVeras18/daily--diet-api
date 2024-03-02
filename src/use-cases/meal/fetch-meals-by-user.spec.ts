@@ -1,11 +1,11 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { makeUser } from '../factories/make-user-factory'
-import { FetchAllMealsByUserUseCase } from './fetch-all-meals-by-user'
+import { FetchAllMealsByUserUseCase } from './fetch-meals-by-user'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { InMemoryMealsRepository } from '@/repositories/in-memory/in-memory-meals-repository'
 import { UserNotFoundError } from '../errors/user-not-found-error'
 
-describe('Fetch all meals by user Use Case', () => {
+describe('Fetch meals by user Use Case', () => {
   let usersRepository: InMemoryUsersRepository
   let mealsRepository: InMemoryMealsRepository
   let sut: FetchAllMealsByUserUseCase
@@ -16,7 +16,7 @@ describe('Fetch all meals by user Use Case', () => {
     sut = new FetchAllMealsByUserUseCase(usersRepository, mealsRepository)
   })
 
-  it('should to fetch all meals by user', async () => {
+  it('should to fetch meals by user', async () => {
     const userFactory = makeUser()
     const user = await usersRepository.create(userFactory)
 
@@ -40,7 +40,7 @@ describe('Fetch all meals by user Use Case', () => {
     expect(meals).toHaveLength(1)
   })
 
-  it('should not be able to fetch all meals by user when the user does not exist', async () => {
+  it('should not be able to fetch meals by user when the user does not exist', async () => {
     expect(() =>
       sut.execute({
         page: 1,
