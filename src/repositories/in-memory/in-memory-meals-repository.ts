@@ -25,4 +25,8 @@ export class InMemoryMealsRepository implements MealsRepository {
       .filter((item) => item.userId === userId)
       .slice((page - 1) * 20, page * 20)
   }
+
+  async findById(mealId: string) {
+    return this.items.find((item) => item.id === mealId)
+  }
 }
