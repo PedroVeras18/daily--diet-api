@@ -2,7 +2,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { makeFetchMealsByUser } from '@/use-cases/factories/meal/factory-meal-use-case'
 import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
-import { fetchMealsByUserQuerySchema } from '@/validations/fetch-meals-by-user-schema'
+import { fetchMealsByUserQuerySchema } from '@/validations/meal/fetch-meals-by-user-schema'
 
 export async function fetchMealsByUser(
   request: FastifyRequest,

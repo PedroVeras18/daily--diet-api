@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { makeCreateMealUseCase } from '@/use-cases/factories/meal/factory-meal-use-case'
-import { createMealBodySchema } from '@/validations/create-meal-schema'
+import { createMealBodySchema } from '@/validations/meal/create-meal-schema'
 import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
 
 export async function createMeal(request: FastifyRequest, reply: FastifyReply) {

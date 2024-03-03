@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { InvalidCredentialsError } from '@/use-cases/errors/auth/invalid-credentials-error'
 import { makeAuthenticateUseCase } from '@/use-cases/factories/auth/factory-auth-use-case'
-import { authenticateBodySchema } from '@/validations/authenticate-schema'
+import { authenticateBodySchema } from '@/validations/auth/authenticate-schema'
 
 export async function authenticate(
   request: FastifyRequest,

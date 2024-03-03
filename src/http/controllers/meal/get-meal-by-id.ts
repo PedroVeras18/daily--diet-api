@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { makeGetMealById } from '@/use-cases/factories/meal/factory-meal-use-case'
 import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
-import { getMealByIdQuerySchema } from '@/validations/get-meal-by-id-schema'
+import { getMealByIdQuerySchema } from '@/validations/meal/get-meal-by-id-schema'
 import { MealNotFoundError } from '@/use-cases/errors/meal/meal-not-found-error'
 
 export async function getMealById(

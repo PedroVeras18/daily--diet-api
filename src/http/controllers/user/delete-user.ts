@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { deleteUserParamsSchema } from '@/validations/delete-user-schema'
+import { deleteUserParamsSchema } from '@/validations/user/delete-user-schema'
 import { makeDeleteUserUseCase } from '@/use-cases/factories/user/factory-user-use-case'
 import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
 
