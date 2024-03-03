@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { makeFetchMealsByUser } from '@/use-cases/factories/factory-meal-use-case'
 import { UserNotFoundError } from '@/use-cases/errors/user-not-found-error'
@@ -17,7 +18,12 @@ export async function fetchMealsByUser(
       userId,
     })
 
-    return reply.status(201).send(meals)
+    const sanitizedMeals = meals.map((meal) => {
+      const { userId, ...sanitizedMeal } = meal
+      return sanitizedMeal
+    })
+
+    return reply.status(200).send(sanitizedMeals)
   } catch (error) {
     if (error instanceof UserNotFoundError) {
       return reply.status(409).send({ message: error.message })
