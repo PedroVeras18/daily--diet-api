@@ -1,7 +1,7 @@
 import { Meal } from '@prisma/client'
 import { MealsRepository } from '@/repositories/meals-repository'
 import { UsersRepository } from '@/repositories/users-repository'
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user/user-not-found-error'
 
 interface FetchMealsByUserUseCaseRequest {
   page: number

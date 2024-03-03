@@ -2,8 +2,8 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { CreateMealUseCase } from './create-meal'
 import { InMemoryMealsRepository } from '@/repositories/in-memory/in-memory-meals-repository'
-import { UserNotFoundError } from '../errors/user-not-found-error'
-import { makeUser } from '../factories/make-user-factory'
+import { UserNotFoundError } from '../../errors/user/user-not-found-error'
+import { makeUser } from '../../factories/user/make-user-factory'
 import { faker } from '@faker-js/faker'
 
 describe('Create Meal Use Case', () => {

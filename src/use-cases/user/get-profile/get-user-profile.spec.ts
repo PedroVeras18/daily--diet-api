@@ -2,7 +2,7 @@ import { hash } from 'bcryptjs'
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { GetUserProfileUseCase } from './get-user-profile'
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user/user-not-found-error'
 
 describe('Get User Profile Use Case', async () => {
   let usersRepository: InMemoryUsersRepository

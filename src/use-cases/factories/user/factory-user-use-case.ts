@@ -1,9 +1,9 @@
 import { PrismaUsersRepository } from '@/repositories/prisma/prisma-user-repository'
-import { RegisterUseCase } from '../user/register'
-import { FetchAllUsersUseCase } from '../user/fetch-all-users'
-import { GetUserProfileUseCase } from '../user/get-user-profile'
-import { DeleteUserUseCase } from '../user/delete-user'
-import { EditUserUseCase } from '../user/edit-user'
+import { RegisterUseCase } from '../../user/create/register'
+import { FetchUsersUseCase } from '../../user/fetch/fetch-users'
+import { GetUserProfileUseCase } from '../../user/get-profile/get-user-profile'
+import { DeleteUserUseCase } from '../../user/delete/delete-user'
+import { EditUserUseCase } from '../../user/update/edit-user'
 
 const usersRepository = new PrismaUsersRepository()
 
@@ -16,7 +16,7 @@ export function makeGetUserProfileUseCase() {
 }
 
 export function makeFetchAllUsersUseCase() {
-  return new FetchAllUsersUseCase(usersRepository)
+  return new FetchUsersUseCase(usersRepository)
 }
 
 export function makeEditUserUseCase() {

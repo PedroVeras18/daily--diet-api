@@ -1,9 +1,9 @@
 import { expect, describe, it, beforeEach } from 'vitest'
-import { makeUser } from '../factories/make-user-factory'
+import { makeUser } from '../../factories/user/make-user-factory'
 import { FetchMealsByUserUseCase } from './fetch-meals-by-user'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { InMemoryMealsRepository } from '@/repositories/in-memory/in-memory-meals-repository'
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user/user-not-found-error'
 
 describe('Fetch meals by user Use Case', () => {
   let usersRepository: InMemoryUsersRepository

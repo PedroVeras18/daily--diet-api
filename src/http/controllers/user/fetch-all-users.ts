@@ -1,4 +1,4 @@
-import { makeFetchAllUsersUseCase } from '@/use-cases/factories/factory-user-use-case'
+import { makeFetchAllUsersUseCase } from '@/use-cases/factories/user/factory-user-use-case'
 import { getAllUsersQuerySchema } from '@/validations/get-all-users-schema'
 import { FastifyReply, FastifyRequest } from 'fastify'
 

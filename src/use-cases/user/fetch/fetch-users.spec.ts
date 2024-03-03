@@ -1,15 +1,15 @@
 import { hash } from 'bcryptjs'
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
-import { FetchAllUsersUseCase } from './fetch-all-users'
+import { FetchUsersUseCase } from './fetch-users'
 
 describe('Fetch All Users Use Case', async () => {
   let usersRepository: InMemoryUsersRepository
-  let sut: FetchAllUsersUseCase
+  let sut: FetchUsersUseCase
 
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
-    sut = new FetchAllUsersUseCase(usersRepository)
+    sut = new FetchUsersUseCase(usersRepository)
   })
 
   it('should return all users', async () => {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { makeFetchMealsByUser } from '@/use-cases/factories/factory-meal-use-case'
-import { UserNotFoundError } from '@/use-cases/errors/user-not-found-error'
+import { makeFetchMealsByUser } from '@/use-cases/factories/meal/factory-meal-use-case'
+import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
 import { fetchMealsByUserQuerySchema } from '@/validations/fetch-meals-by-user-schema'
 
 export async function fetchMealsByUser(

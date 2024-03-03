@@ -3,7 +3,7 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { EditUserUseCase } from './edit-user'
 import { IEditUser } from '@/@types/user'
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user/user-not-found-error'
 
 describe('Edit User Use Case', () => {
   let usersRepository: InMemoryUsersRepository

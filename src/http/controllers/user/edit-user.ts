@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeEditUserUseCase } from '@/use-cases/factories/factory-user-use-case'
-import { UserNotFoundError } from '@/use-cases/errors/user-not-found-error'
+import { makeEditUserUseCase } from '@/use-cases/factories/user/factory-user-use-case'
+import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
 import { editUserBodySchema } from '@/validations/edit-user-schema'
 
 export async function editUser(request: FastifyRequest, reply: FastifyReply) {

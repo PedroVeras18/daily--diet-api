@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { DeleteUserUseCase } from './delete-user'
 import { hash } from 'bcryptjs'
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user/user-not-found-error'
 
 describe('Delete User Use Case', () => {
   let usersRepository: InMemoryUsersRepository

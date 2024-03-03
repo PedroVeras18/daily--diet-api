@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { UserNotFoundError } from '@/use-cases/errors/user-not-found-error'
-import { makeGetUserProfileUseCase } from '@/use-cases/factories/factory-user-use-case'
+import { UserNotFoundError } from '@/use-cases/errors/user/user-not-found-error'
+import { makeGetUserProfileUseCase } from '@/use-cases/factories/user/factory-user-use-case'
 
 export async function getUserProfile(
   request: FastifyRequest,
