@@ -30,4 +30,9 @@ export class InMemoryMealsRepository implements MealsRepository {
     const foundMeal = this.items.find((item) => item.id === mealId)
     return foundMeal || null
   }
+
+  async delete(mealId: string): Promise<void> {
+    const itemIndex = this.items.findIndex((item) => item.id === mealId)
+    this.items.splice(itemIndex, 1)
+  }
 }
