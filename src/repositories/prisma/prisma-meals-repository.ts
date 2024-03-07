@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { Meal, Prisma } from '@prisma/client'
 import { MealsRepository } from '../meals-repository'
 import { prisma } from '@/lib/prisma'
 
@@ -31,6 +31,15 @@ export class PrismaMealsRepository implements MealsRepository {
     })
 
     return meal
+  }
+
+  async save(anInput: Meal): Promise<void> {
+    await prisma.meal.update({
+      where: {
+        id: anInput.id,
+      },
+      data: anInput,
+    })
   }
 
   async delete(mealId: string) {
