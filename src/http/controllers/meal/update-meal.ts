@@ -27,5 +27,5 @@ export async function updateMeal(request: FastifyRequest, reply: FastifyReply) {
     throw error
   }
 
-  return reply.status(201).send()
+  return reply.status(200).send()
 }
