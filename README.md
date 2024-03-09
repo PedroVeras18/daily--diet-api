@@ -1,6 +1,6 @@
-# App
+# Daily Diet API
 
-GymPass style app.
+Controle de Dieta Diária.
 
 ## RNs (Regras de negócio)
 - [X] Deve ser possível criar um usuário
