@@ -1,10 +1,10 @@
-import { Meal } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { MealsRepository } from '@/repositories/meals-repository'
 import { MealNotFoundError } from '../../errors/meal/meal-not-found-error'
 
 interface UpdateMealUseCaseRequest {
   anId: string
-  anInput: Meal
+  anInput: Prisma.MealUncheckedUpdateInput
 }
 
 export class UpdateMealUseCase {
