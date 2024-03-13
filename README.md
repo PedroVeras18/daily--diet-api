@@ -1,6 +1,6 @@
 # Daily Diet API
 
-Controle de Dieta Diária.
+<img width="1920" alt="cover-daily-diet-api" src="https://github.com/PedroVeras18/daily-diet-api/assets/88912035/5531d072-5944-4433-815f-b507b3745636">
 
 ## RNs (Regras de negócio)
 - [X] Deve ser possível criar um usuário
