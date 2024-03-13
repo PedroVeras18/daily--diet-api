@@ -1,4 +1,4 @@
-import { GetMetricsUseCaseResponse } from '@/use-cases/user/metrics/get-metrics'
+import { GetMetricsUseCaseResponse } from '@/use-cases/meal/metrics/get-metrics'
 import { Meal, Prisma } from '@prisma/client'
 
 export interface MealsRepository {

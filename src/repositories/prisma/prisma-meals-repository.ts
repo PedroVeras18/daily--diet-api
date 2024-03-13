@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { MealsRepository } from '../meals-repository'
 import { prisma } from '@/lib/prisma'
-import { GetMetricsUseCaseResponse } from '@/use-cases/user/metrics/get-metrics'
+import { GetMetricsUseCaseResponse } from '@/use-cases/meal/metrics/get-metrics'
 
 export class PrismaMealsRepository implements MealsRepository {
   async create(data: Prisma.MealUncheckedCreateInput) {

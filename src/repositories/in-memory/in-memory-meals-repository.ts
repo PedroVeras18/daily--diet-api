@@ -1,7 +1,7 @@
 import { Meal } from '@prisma/client'
 import { MealsRepository } from '../meals-repository'
 import { randomUUID } from 'crypto'
-import { GetMetricsUseCaseResponse } from '@/use-cases/user/metrics/get-metrics'
+import { GetMetricsUseCaseResponse } from '@/use-cases/meal/metrics/get-metrics'
 
 export class InMemoryMealsRepository implements MealsRepository {
   public items: Meal[] = []
