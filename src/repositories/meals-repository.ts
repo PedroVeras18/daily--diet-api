@@ -1,3 +1,4 @@
+import { GetMetricsUseCaseResponse } from '@/use-cases/user/metrics/get-metrics'
 import { Meal, Prisma } from '@prisma/client'
 
 export interface MealsRepository {
@@ -6,4 +7,5 @@ export interface MealsRepository {
   findById(mealId: string): Promise<Meal | null>
   delete(mealId: string): Promise<void>
   save(anInput: Prisma.MealUncheckedUpdateInput): Promise<void>
+  getMetrics(userId: string): Promise<GetMetricsUseCaseResponse>
 }
