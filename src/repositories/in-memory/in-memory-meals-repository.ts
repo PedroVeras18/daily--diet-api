@@ -1,6 +1,7 @@
 import { Meal } from '@prisma/client'
 import { MealsRepository } from '../meals-repository'
 import { randomUUID } from 'crypto'
+import { GetMetricsUseCaseResponse } from '@/use-cases/user/metrics/get-metrics'
 
 export class InMemoryMealsRepository implements MealsRepository {
   public items: Meal[] = []
@@ -40,5 +41,41 @@ export class InMemoryMealsRepository implements MealsRepository {
   async delete(mealId: string): Promise<void> {
     const itemIndex = this.items.findIndex((item) => item.id === mealId)
     this.items.splice(itemIndex, 1)
+  }
+
+  async getMetrics(userId: string): Promise<GetMetricsUseCaseResponse> {
+    const mealsFilteredByUser = this.items.filter(
+      (item) => item.userId === userId,
+    )
+
+    const totalMealsInDiet = mealsFilteredByUser.filter(
+      (item) => item.isAtDiet === true,
+    )
+
+    const totalMealsOutsideDiet = mealsFilteredByUser.filter(
+      (item) => item.isAtDiet === false,
+    )
+
+    let bestSequenceMealsWithinDiet = 0
+    let currentDietSequence = 0
+
+    for (const meal of totalMealsInDiet) {
+      if (meal.isAtDiet) {
+        currentDietSequence++
+        bestSequenceMealsWithinDiet = Math.max(
+          bestSequenceMealsWithinDiet,
+          currentDietSequence,
+        )
+      } else {
+        currentDietSequence = 0
+      }
+    }
+
+    return {
+      totalMealsRecorded: mealsFilteredByUser.length,
+      totalMealsInDiet: totalMealsInDiet.length,
+      totalMealsOutsideDiet: totalMealsOutsideDiet.length,
+      bestSequenceMealsWithinDiet,
+    }
   }
 }
