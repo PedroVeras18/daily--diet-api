@@ -5,6 +5,7 @@ import { FetchMealsByUserUseCase } from '../../meal/fetch-by-user/fetch-meals-by
 import { GetMealByIdUseCase } from '../../meal/get-by-id/get-meal-by-id'
 import { DeleteMealUseCase } from '@/use-cases/meal/delete/delete-meal'
 import { UpdateMealUseCase } from '@/use-cases/meal/update/update-meal'
+import { GetMetricsUseCase } from '@/use-cases/user/metrics/get-metrics'
 
 const usersRepository = new PrismaUsersRepository()
 const mealsRepository = new PrismaMealsRepository()
@@ -27,4 +28,8 @@ export function makeDeleteMealUseCase() {
 
 export function makeUpdateMealUseCase() {
   return new UpdateMealUseCase(mealsRepository)
+}
+
+export function makeGetMetrics() {
+  return new GetMetricsUseCase(usersRepository, mealsRepository)
 }

@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { MealsRepository } from '../meals-repository'
 import { prisma } from '@/lib/prisma'
+import { GetMetricsUseCaseResponse } from '@/use-cases/user/metrics/get-metrics'
 
 export class PrismaMealsRepository implements MealsRepository {
   async create(data: Prisma.MealUncheckedCreateInput) {
@@ -48,5 +49,48 @@ export class PrismaMealsRepository implements MealsRepository {
         id: mealId,
       },
     })
+  }
+
+  async getMetrics(userId: string): Promise<GetMetricsUseCaseResponse> {
+    const meals = await prisma.meal.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        created_at: 'asc',
+      },
+    })
+
+    const totalMealsRecorded = meals.length
+
+    const totalMealsInDiet = meals.filter(
+      (meal) => meal.isAtDiet === true,
+    ).length
+
+    const totalMealsOutsideDiet = meals.filter(
+      (meal) => meal.isAtDiet === false,
+    ).length
+
+    let bestSequenceMealsWithinDiet = 0
+    let currentDietSequence = 0
+
+    for (const meal of meals) {
+      if (meal.isAtDiet) {
+        currentDietSequence++
+        bestSequenceMealsWithinDiet = Math.max(
+          bestSequenceMealsWithinDiet,
+          currentDietSequence,
+        )
+      } else {
+        currentDietSequence = 0
+      }
+    }
+
+    return {
+      totalMealsRecorded,
+      totalMealsInDiet,
+      totalMealsOutsideDiet,
+      bestSequenceMealsWithinDiet,
+    }
   }
 }
