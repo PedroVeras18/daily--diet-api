@@ -53,18 +53,23 @@ export class PrismaMealsRepository implements MealsRepository {
 
   async getMetrics(userId: string): Promise<GetMetricsUseCaseResponse> {
     const defaultQuery = {
-        userId,
-      }
-    
-    const [totalMealsRecorded, totalMealsInDiet, totalMealsOutsideDiet] = await Promise.all([prisma.meal.count({
-      where: defaultQuery
-    }), prisma.meal.count({
-      where: {...defaultQuery, isAtDiet: true}
-    }), prisma.meal.count({
-      where: {...defaultQuery, isAtDiet: false}
-    })])
+      userId,
+    }
 
-    let bestSequenceMealsWithinDiet = 0
+    const [totalMealsRecorded, totalMealsInDiet, totalMealsOutsideDiet] =
+      await Promise.all([
+        prisma.meal.count({
+          where: defaultQuery,
+        }),
+        prisma.meal.count({
+          where: { ...defaultQuery, isAtDiet: true },
+        }),
+        prisma.meal.count({
+          where: { ...defaultQuery, isAtDiet: false },
+        }),
+      ])
+
+    const bestSequenceMealsWithinDiet = totalMealsInDiet
 
     return {
       totalMealsRecorded,
