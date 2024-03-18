@@ -10,8 +10,6 @@ export async function updateMeal(request: FastifyRequest, reply: FastifyReply) {
   const { mealId } = updateMealParamsSchema.parse(request.params)
   const anInput = updateMealBodySchema.parse(request.body)
 
-  console.log(anInput)
-
   try {
     const updateMealUseCase = makeUpdateMealUseCase()
 
