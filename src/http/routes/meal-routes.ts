@@ -2,12 +2,12 @@ import { FastifyInstance } from 'fastify'
 
 import { verifyJwt } from '../middlewares/verify-jwt'
 
-import { createMeal } from '../controllers/meal/create-meal'
-import { fetchMealsByUser } from '../controllers/meal/fetch-meals-by-user'
-import { getMealById } from '../controllers/meal/get-meal-by-id'
-import { deleteMeal } from '../controllers/meal/delete-meal'
-import { updateMeal } from '../controllers/meal/update-meal'
-import { getMetrics } from '../controllers/meal/get-metrics'
+import { createMeal } from '../controllers/meal/create-meal.controller'
+import { fetchMealsByUser } from '../controllers/meal/fetch-meals-by-user.controller'
+import { getMealById } from '../controllers/meal/get-meal-by-id.controller'
+import { deleteMeal } from '../controllers/meal/delete-meal.controller'
+import { updateMeal } from '../controllers/meal/update-meal.controller'
+import { getMetrics } from '../controllers/meal/get-metrics.controller'
 
 export async function mealRoutes(app: FastifyInstance) {
   app.post('/meal', { onRequest: [verifyJwt] }, createMeal)
