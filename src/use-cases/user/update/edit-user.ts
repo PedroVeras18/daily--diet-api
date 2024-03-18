@@ -3,20 +3,15 @@ import { UserNotFoundError } from '../../errors/user/user-not-found-error'
 import { IEditUser } from '@/@types/user'
 
 interface EditUserUseCaseRequest {
+  anId: string
   anInput: IEditUser
 }
 
 export class EditUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute({ anInput }: EditUserUseCaseRequest) {
-    const userId = anInput.id
-
-    if (!userId) {
-      throw new UserNotFoundError()
-    }
-
-    const existingUser = await this.usersRepository.findById(userId)
+  async execute({ anId, anInput }: EditUserUseCaseRequest) {
+    const existingUser = await this.usersRepository.findById(anId)
 
     if (!existingUser) {
       throw new UserNotFoundError()

@@ -7,9 +7,12 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
   try {
     const anInput = editUserBodySchema.parse(request.body)
 
+    const anId = request.user.sub
+
     const editUser = makeEditUserUseCase()
 
     await editUser.execute({
+      anId,
       anInput,
     })
 

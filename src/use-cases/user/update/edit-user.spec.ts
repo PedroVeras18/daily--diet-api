@@ -24,12 +24,12 @@ describe('Edit User Use Case', () => {
     expect(usersRepository.items[0].name).toEqual(createdUser.name)
 
     const editUser: IEditUser = {
-      id: createdUser.id,
       name: 'Pedro Veras',
       email: 'pedroveras@example.com',
     }
 
     await sut.execute({
+      anId: createdUser.id,
       anInput: editUser,
     })
 
@@ -44,9 +44,8 @@ describe('Edit User Use Case', () => {
 
     expect(() =>
       sut.execute({
-        anInput: {
-          id: userMock.id,
-        },
+        anId: userMock.id,
+        anInput: {},
       }),
     ).rejects.toBeInstanceOf(UserNotFoundError)
   })
