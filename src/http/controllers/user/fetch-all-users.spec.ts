@@ -1,6 +1,8 @@
 import request from 'supertest'
 import { app } from '@/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { createAndAuthenticateUser } from '@/util/test/create-and-authenticate-user'
+import { prisma } from '@/lib/prisma'
 
 describe('Fetch All Users (e2e)', () => {
   beforeAll(async () => {
@@ -12,37 +14,31 @@ describe('Fetch All Users (e2e)', () => {
   })
 
   it('should be search all users', async () => {
-    await request(app.server).post('/users').send({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      password: '123456',
+    const { token } = await createAndAuthenticateUser(app)
+
+    await prisma.user.createMany({
+      data: [
+        {
+          name: `user-01`,
+          email: `user-01@example.com`,
+          password: 'password-user-01',
+        },
+        {
+          name: `user-02`,
+          email: `user-02@example.com`,
+          password: 'password-user-02',
+        },
+      ],
     })
 
-    for (let i = 1; i <= 22; i++) {
-      await request(app.server)
-        .post('/users')
-        .send({
-          name: `user-${i}`,
-          email: `user-${i}@example.com`,
-          password: `${i + 123456}`,
-        })
-    }
-
-    const authResponse = await request(app.server).post('/sessions').send({
-      email: 'johndoe@example.com',
-      password: '123456',
-    })
-
-    const { token } = authResponse.body
-
-    const usersResponseFirstPage = await request(app.server)
+    const fetchUsersResponse = await request(app.server)
       .get('/users')
       .set('Authorization', `Bearer ${token}`)
       .send({
         page: 1,
       })
 
-    expect(usersResponseFirstPage.statusCode).toEqual(200)
-    expect(usersResponseFirstPage.body.data.length).toBe(20)
+    expect(fetchUsersResponse.statusCode).toEqual(200)
+    expect(fetchUsersResponse.body.data.length).toBe(3)
   })
 })

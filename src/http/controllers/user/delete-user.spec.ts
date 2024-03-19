@@ -1,6 +1,7 @@
 import request from 'supertest'
 import { app } from '@/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { createAndAuthenticateUser } from '@/util/test/create-and-authenticate-user'
 
 describe('Delete User (e2e)', () => {
   beforeAll(async () => {
@@ -12,18 +13,7 @@ describe('Delete User (e2e)', () => {
   })
 
   it('should be delete an user', async () => {
-    await request(app.server).post('/users').send({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      password: '123456',
-    })
-
-    const authResponse = await request(app.server).post('/sessions').send({
-      email: 'johndoe@example.com',
-      password: '123456',
-    })
-
-    const { token } = authResponse.body
+    const { token } = await createAndAuthenticateUser(app)
 
     const profileResponse = await request(app.server)
       .get('/me')
